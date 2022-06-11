@@ -1,0 +1,48 @@
+﻿@model List<Peters_A3.Models.InvoiceLineItem>
+@{
+    ViewBag.Title = "InvoiceLineItems";
+}
+<script src="~/Scripts/main.js"></script>
+
+<h2>Invoice Line Items</h2>
+
+<a href="/InvoiceLineItems/Add/0">Add Line Item</a>
+
+<div class="col-md-6">
+    <div class="col-md-6">
+        <input id="txtSearch" type="text" class="form-control" placeholder="Search..." />
+    </div>
+    <div class="col-md-6">
+        <input type="button" class="btn btn-info" value="Search" onclick="Sortable.Search();" />
+    </div>
+</div>
+
+<table class="sortable table table-hover">
+    <thead>
+        <tr>
+            <th onclick="Sortable.Sort(0);">Invoice #</th>
+            <th onclick="Sortable.Sort(1);">Product Code</th>
+            <th onclick="Sortable.Sort(2);">Unit Price</th>
+            <th onclick="Sortable.Sort(3);">Quantity</th>
+            <th onclick="Sortable.Sort(4);">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model)
+        {
+            <tr>
+                <td>@line.InvoiceID</td>
+                <td>@line.ProductCode</td>
+                <td>@line.UnitPrice</td>
+                <td>@line.Quantity</td>
+                <td>@line.ItemTotal</td>
+                <td><a href="/InvoiceLineItems/Add/?invoiceId=@line.InvoiceID&productCode=@line.ProductCode">Update</a></td>
+                <td><a href="/InvoiceLineItems/Delete/?invoiceId=@line.InvoiceID&productCode=@line.ProductCode">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    Sortable.baseUrl = '/InvoiceLineItems/InvoiceLineItems/';
+</script>

@@ -1,0 +1,42 @@
+﻿@model List<Peters_A3.Models.State>
+@{
+    ViewBag.Title = "States";
+}
+<script src="~/Scripts/main.js"></script>
+
+<h2>States</h2>
+
+<a href="/States/Add/0">Add State</a>
+
+<div class="col-md-6">
+    <div class="col-md-6">
+        <input id="txtSearch" type="text" class="form-control" placeholder="Search..." />
+    </div>
+    <div class="col-md-6">
+        <input type="button" class="btn btn-info" value="Search" onclick="Sortable.Search();" />
+    </div>
+</div>
+
+<table class="sortable table table-hover">
+    <thead>
+        <tr>
+            <th onclick="Sortable.Sort(0);">State Code</th>
+            <th onclick="Sortable.Sort(1);">State Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var state in Model)
+        {
+            <tr>
+                <td>@state.StateCode</td>
+                <td>@state.StateName</td>
+                <td><a href="/States/Add/@state.StateCode">Update</a></td>
+                <td><a href="/States/Delete/@state.StateCode">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    Sortable.baseUrl = '/States/States/';
+</script>

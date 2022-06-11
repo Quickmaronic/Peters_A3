@@ -1,0 +1,29 @@
+﻿@model Peters_A3.Models.Customer
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add/Update Customer</h2>
+
+@using (Html.BeginForm("Add", "Customers", FormMethod.Post))
+{
+    @Html.HiddenFor(c => c.CustomerID, new { @class = "form-control" })
+    @Html.LabelFor(c => c.Name)
+    @Html.TextBoxFor(c => c.Name, new { @class = "form-control" })
+    @Html.Label("Address")
+    <div class="autocomplete-container" id="autocomplete-container"></div>
+    @Html.HiddenFor(c => c.Address, new { id="custAddress", @class = "form-control" })
+    @Html.HiddenFor(c => c.City, new { id = "custCity", @class = "form-control" })
+    @Html.HiddenFor(c => c.State, new { id = "custState", @class = "form-control" })
+    @Html.HiddenFor(c => c.ZipCode, new { id = "custZipCode", @class = "form-control" })
+
+    <input type="submit" value="Submit" class="btn btn-info" />
+}
+<script src="~/Scripts/GeoAPI.js"></script>
+
+<script>
+    if ("@Model.Address") {
+        let address = "@Model.Address, @Model.City, @Model.State, @Model.ZipCode";
+        $("#autocomplete-container input").val(address);
+    }
+</script>

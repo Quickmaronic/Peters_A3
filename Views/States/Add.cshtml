@@ -1,0 +1,16 @@
+﻿@model Peters_A3.Models.State
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add/Update State</h2>
+
+@using (Html.BeginForm("Add", "States", FormMethod.Post))
+{
+    @Html.LabelFor(s => s.StateCode)
+    @Html.TextBoxFor(s => s.StateCode, new { @class = "form-control" })
+    @Html.LabelFor(s => s.StateName)
+    @Html.TextBoxFor(s => s.StateName, new { @class = "form-control" })
+
+    <input type="submit" value="Submit" class="btn btn-info" />
+}

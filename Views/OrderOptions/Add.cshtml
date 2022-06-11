@@ -1,0 +1,18 @@
+﻿@model Peters_A3.Models.OrderOption
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add/Update Order Option</h2>
+
+@using (Html.BeginForm("Add", "OrderOptions", FormMethod.Post))
+{
+    @Html.LabelFor(o => o.SalesTaxRate)
+    @Html.TextBoxFor(o => o.SalesTaxRate, new { @class = "form-control" })
+    @Html.LabelFor(o => o.FirstBookShipCharge)
+    @Html.TextBoxFor(o => o.FirstBookShipCharge, new { @class = "form-control" })
+    @Html.LabelFor(o => o.AdditionalBookShipCharge)
+    @Html.TextBoxFor(o => o.AdditionalBookShipCharge, new { @class = "form-control" })
+
+    <input type="submit" value="Submit" class="btn btn-info" />
+}

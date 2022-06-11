@@ -1,0 +1,18 @@
+﻿@model Peters_A3.Models.Product
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete Product</h2>
+
+@using (Html.BeginForm("Delete", "Products", FormMethod.Post))
+{
+    <h3>Are you sure you want to delete this product?</h3>
+    @Html.HiddenFor(p => p.ProductCode, new { @class = "form-control" })
+    @Html.HiddenFor(p => p.Description, new { @class = "form-control" })
+    @Html.HiddenFor(p => p.UnitPrice, new { @class = "form-control" })
+    @Html.HiddenFor(p => p.OnHandQuantity, new { @class = "form-control" })
+
+    <input type="submit" value="Submit" class="btn btn-info" />
+    <input type="button" value="Cancel" class="btn btn-info" onClick="window.location.href='/Products/Products'" />
+}

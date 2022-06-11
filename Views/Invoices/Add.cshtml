@@ -1,0 +1,33 @@
+﻿@model Peters_A3.Models.AddInvoiceModel
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add/Update Invoice</h2>
+
+@using (Html.BeginForm("Add", "Invoices", FormMethod.Post))
+{
+    @Html.HiddenFor(i => i.Invoice.InvoiceID, new { @class = "form-control" })
+    @Html.Label("Customer")<br />
+    <input list ="ID" name="customerID" />
+
+    <datalist id="ID">
+        @foreach (var id in Model.Customers)
+        {
+            <option value="@id.CustomerID, @id.Name"></option>
+        }
+    </datalist>
+    <br />
+    @Html.LabelFor(i => i.Invoice.InvoiceDate)
+    @Html.TextBoxFor(i => i.Invoice.InvoiceDate, new { @type = "date", @class = "form-control" })
+    @Html.LabelFor(i => i.Invoice.ProductTotal)
+    @Html.TextBoxFor(i => i.Invoice.ProductTotal, new { @class = "form-control" })
+    @Html.LabelFor(i => i.Invoice.SalesTax)
+    @Html.TextBoxFor(i => i.Invoice.SalesTax, new { @class = "form-control" })
+    @Html.LabelFor(i => i.Invoice.Shipping)
+    @Html.TextBoxFor(i => i.Invoice.Shipping, new { @class = "form-control" })
+    @Html.LabelFor(i => i.Invoice.InvoiceTotal)
+    @Html.TextBoxFor(i => i.Invoice.InvoiceTotal, new { @class = "form-control" })
+
+    <input type="submit" value="Submit" class="btn btn-info" />
+}

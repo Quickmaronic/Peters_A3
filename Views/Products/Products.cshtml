@@ -1,0 +1,46 @@
+﻿@model List<Peters_A3.Models.Product>
+@{
+    ViewBag.Title = "Products";
+}
+<script src="~/Scripts/main.js"></script>
+
+<h2>Products</h2>
+
+<a href="/Products/Add/0">Add Product</a>
+
+<div class="col-md-6">
+    <div class="col-md-6">
+        <input id="txtSearch" type="text" class="form-control" placeholder="Search..." />
+    </div>
+    <div class="col-md-6">
+        <input type="button" class="btn btn-info" value="Search" onclick="Sortable.Search();" />
+    </div>
+</div>
+
+<table class="sortable table table-hover">
+    <thead>
+        <tr>
+            <th onclick="Sortable.Sort(0);">Product Code</th>
+            <th onclick="Sortable.Sort(1);">Description</th>
+            <th onclick="Sortable.Sort(2);">Unit Cost</th>
+            <th onclick="Sortable.Sort(3);">On-Hand Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductCode</td>
+                <td>@product.Description</td>
+                <td>@product.UnitPrice</td>
+                <td>@product.OnHandQuantity</td>
+                <td><a href="/Products/Add/@product.ProductCode">Update</a></td>
+                <td><a href="/Products/Delete/@product.ProductCode">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    Sortable.baseUrl = '/Products/Products/';
+</script>

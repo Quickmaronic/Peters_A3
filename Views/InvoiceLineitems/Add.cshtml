@@ -1,0 +1,36 @@
+﻿@model Peters_A3.Models.AddInvoiceLineItemsModel
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add/Update Line Item</h2>
+
+@using (Html.BeginForm("Add", "InvoiceLineItems", FormMethod.Post))
+{
+    @Html.Label("Invoice ID")<br />
+    <input list="ID" name="invoiceID" />
+    <datalist id="ID">
+        @foreach (var id in Model.Invoices)
+        {
+            <option value="@id.InvoiceID"></option>
+        }
+    </datalist>
+    <br />
+    @Html.Label("Product Code")<br />
+    <input list="CODE" name="productCode" />
+    <datalist id="CODE">
+        @foreach (var code in Model.Products)
+        {
+            <option value="@code.ProductCode"></option>
+        }
+    </datalist>
+    <br />
+    @Html.LabelFor(i => i.InvoiceLineItem.UnitPrice)
+    @Html.TextBoxFor(i => i.InvoiceLineItem.UnitPrice, new { @class = "form-control" })
+    @Html.LabelFor(i => i.InvoiceLineItem.Quantity)
+    @Html.TextBoxFor(i => i.InvoiceLineItem.Quantity, new { @class = "form-control" })
+    @Html.LabelFor(i => i.InvoiceLineItem.ItemTotal)
+    @Html.TextBoxFor(i => i.InvoiceLineItem.ItemTotal, new { @class = "form-control" })
+
+    <input type="submit" value="Submit" class="btn btn-info" />
+}

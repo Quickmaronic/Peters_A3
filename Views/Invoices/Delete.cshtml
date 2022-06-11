@@ -1,0 +1,21 @@
+﻿@model Peters_A3.Models.Invoice
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete Invoice</h2>
+
+@using (Html.BeginForm("Delete", "Invoices", FormMethod.Post))
+{
+    <h3>Are you sure you want to delete this invoice?</h3>
+    @Html.HiddenFor(i => i.InvoiceID, new { @class = "form-control" })
+    @Html.HiddenFor(i => i.CustomerID, new { @class = "form-control" })
+    @Html.HiddenFor(i => i.InvoiceDate, new { @class = "form-control" })
+    @Html.HiddenFor(i => i.ProductTotal, new { @class = "form-control" })
+    @Html.HiddenFor(i => i.SalesTax, new { @class = "form-control" })
+    @Html.HiddenFor(i => i.Shipping, new { @class = "form-control" })
+    @Html.HiddenFor(i => i.InvoiceTotal, new { @class = "form-control" })
+
+    <input type="submit" value="Submit" class="btn btn-info" />
+    <input type="button" value="Cancel" class="btn btn-info" onClick="window.location.href='/Invoices/Invoices'" />
+}

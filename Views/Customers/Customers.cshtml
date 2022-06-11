@@ -1,0 +1,48 @@
+﻿@model List<Peters_A3.Models.Customer>
+@{
+    ViewBag.Title = "Customers";
+}
+<script src="~/Scripts/main.js"></script>
+
+<h2>Customers</h2>
+
+<a href="/Customers/Add/0">Add Customer</a>
+
+<div class="col-md-6">
+    <div class="col-md-6">
+        <input id="txtSearch" type="text" class="form-control" placeholder="Search..." />
+    </div>
+    <div class="col-md-6">
+        <input type="button" class="btn btn-info" value="Search" onclick="Sortable.Search();" />
+    </div>
+</div>
+
+<table class="sortable table table-hover">
+    <thead>
+        <tr>
+            <th onclick="Sortable.Sort(0);">Customer Name</th>
+            <th onclick="Sortable.Sort(1);">Address</th>
+            <th onclick="Sortable.Sort(2);">City</th>
+            <th onclick="Sortable.Sort(3);">State</th>
+            <th onclick="Sortable.Sort(4);">Zip Code</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@customer.Name</td>
+                <td>@customer.Address</td>
+                <td>@customer.City</td>
+                <td>@customer.State</td>
+                <td>@customer.ZipCode</td>
+                <td><a href="/Customers/Add/@customer.CustomerID">Update</a></td>
+                <td><a href="/Customers/Delete/@customer.CustomerID">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    Sortable.baseUrl = '/Customers/Customers/';
+</script>

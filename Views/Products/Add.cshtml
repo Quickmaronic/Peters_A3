@@ -1,0 +1,20 @@
+﻿@model Peters_A3.Models.Product
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add/Update Product</h2>
+
+@using (Html.BeginForm("Add", "Products", FormMethod.Post))
+{
+    @Html.LabelFor(p => p.ProductCode)
+    @Html.TextBoxFor(p => p.ProductCode, new { @class = "form-control" })
+    @Html.LabelFor(p => p.Description)
+    @Html.TextBoxFor(p => p.Description, new { @class = "form-control" })
+    @Html.LabelFor(p => p.UnitPrice)
+    @Html.TextBoxFor(p => p.UnitPrice, new { @class = "form-control" })
+    @Html.LabelFor(p => p.OnHandQuantity)
+    @Html.TextBoxFor(p => p.OnHandQuantity, new { @class = "form-control" })
+
+    <input type="submit" value="Submit" class="btn btn-info" />
+}

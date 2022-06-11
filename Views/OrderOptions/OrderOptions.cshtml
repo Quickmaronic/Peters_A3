@@ -1,0 +1,44 @@
+﻿@model List<Peters_A3.Models.OrderOption>
+@{
+    ViewBag.Title = "OrderOptions";
+}
+<script src="~/Scripts/main.js"></script>
+
+<h2>Order Options</h2>
+
+<!--<a href="/OrderOptions/Add/0">Add Order Option</a>-->
+
+<div class="col-md-6">
+    <div class="col-md-6">
+        <input id="txtSearch" type="text" class="form-control" placeholder="Search..." />
+    </div>
+    <div class="col-md-6">
+        <input type="button" class="btn btn-info" value="Search" onclick="Sortable.Search();" />
+    </div>
+</div>
+
+<table class="sortable table table-hover">
+    <thead>
+        <tr>
+            <th onclick="Sortable.Sort(0);">Sales Tax Rate</th>
+            <th onclick="Sortable.Sort(1);">First Book Shipping</th>
+            <th onclick="Sortable.Sort(2);">Additional Book Shipping</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var orderOption in Model)
+        {
+            <tr>
+                <td>@orderOption.SalesTaxRate</td>
+                <td>@orderOption.FirstBookShipCharge</td>
+                <td>@orderOption.AdditionalBookShipCharge</td>
+                <!--<td><a href="/OrderOptions/Add/@orderOption.SalesTaxRate">Update</a></td>
+                <td><a href="/OrderOptions/Delete/@orderOption.SalesTaxRate">Delete</a></td>-->
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    Sortable.baseUrl = '/OrderOptions/OrderOptions/';
+</script>
